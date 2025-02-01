@@ -6,6 +6,7 @@ interface IStateTodo {
   todos: ITodo[];
   addTodo: (todo: ITodo) => void;
   deleteTodo: (id: number | undefined) => void;
+  updateTodoDescription: (id: number | undefined, newDescription: string) => void;
   toggleStatus: (id: number | undefined) => void;
 }
 
@@ -22,6 +23,15 @@ export const useTodoStore = create<IStateTodo>()(
         set((state) => ({
           todos: state.todos.filter((todo) => todo.id !== id)
         }))
+      },
+      updateTodoDescription (id, newDescription) {
+        set((state) => {
+          const todo = state.todos.find((todo) => todo.id === id);
+          if (todo) {
+            todo.description = newDescription;
+          }
+          return { todos: [...state.todos] };
+        })
       },
       toggleStatus: (id) => {
         set((state) => ({

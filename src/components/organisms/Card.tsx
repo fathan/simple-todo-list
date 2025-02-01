@@ -2,7 +2,6 @@
 
 import InputTodo from "../molecules/InputTodo";
 import ItemTodo from "../molecules/ItemTodo";
-import ItemTodoDone from "../molecules/ItemTodoDone";
 
 import { useTodoStore } from '@/stores/useTodoStore';
 
@@ -37,33 +36,15 @@ const Card = () => {
       <InputTodo />
 
       <div className="flex flex-col gap-4 p-4">
-        {todos.map((todo) => {
-          if (todo.status) {
-            return (
-              <ItemTodo
-                key={todo.id}
-                id={todo.id}
-                status={todo.status}
-                description={todo.description}
-              />
-            )
-          }
-        }
+        {todos.map((todo) => (
+          <ItemTodo
+            key={todo.id}
+            id={todo.id}
+            status={todo.status}
+            description={todo.description}
+          />
+        )
         )}
-      </div>
-
-      <div className="flex flex-col gap-4 p-4">
-        {todos.map((todo) => {
-          if (!todo.status) {
-            return (
-              <ItemTodoDone
-                key={todo.id}
-                id={todo.id}
-                description={todo.description}
-              />
-            )
-          }
-        })}
       </div>
     </div>
   );
