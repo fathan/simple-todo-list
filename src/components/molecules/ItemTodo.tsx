@@ -7,7 +7,8 @@ const ItemTodo: React.FC<ITodo> = ({ id, description, status }) => {
   return (
     <div className="flex flex-row gap-4">
       <input 
-        type="checkbox" 
+        type="checkbox"
+        className="cursor-pointer"
         checked={!status} 
         onChange={() => {
           toggleStatus(id);
